@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+
+        .menu li {
+            margin: 10px 0;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+        }
+
+        .menu a:hover {
+            color: blue;
+        }
+
+
+
+    </style>
+
+</head>
+
+<body>
+<h1 > Aplikacja do zarządzania korkami</h1>
+<div class="menu">
+    <ul>
+        <li>
+            <a th:href="@{/student}" role="button">Zarzadzanie uczniami</a>
+            <a th:href="@{/plan}" role="button">Zarzadzanie zajęciami</a>
+            <a th:href="@{/raports}" role="button">Analiza i raporty</a>
+            <a th:href="@{/material}" role="button">Materiały do zajęć</a>
+        </li>
+    </ul>
+</div>
+
+
+</body>
+</html>
