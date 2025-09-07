@@ -21,7 +21,7 @@
   <tr th:each="student : ${students}">
     <td th:text="${student.name}"></td>
     <td th:text="${student.surname}"></td>
-    <td th:text="${student.studentClass}"></td>
+    <td th:text="${student.studentClass.label}"></td>
     <td th:text="${student.phone}"></td>
     <td th:text="${student.notes}"></td>
   </tr>

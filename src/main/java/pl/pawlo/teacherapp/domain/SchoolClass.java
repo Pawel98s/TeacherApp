@@ -23,7 +23,7 @@ public enum SchoolClass {
     CLASS_4_TECHNIKUM("4 TECHNIKUM"),
     CLASS_MATURALNA("KLASA MATURALNA");
 
-    private final String label;
+    final String label;
 
 
 
