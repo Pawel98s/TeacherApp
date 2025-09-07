@@ -8,5 +8,7 @@ import pl.pawlo.teacherapp.domain.Student;
 @Mapper(componentModel = "spring")
 public interface StudentMapper {
 
-    StudentDTO map(final Student student);
+    StudentDTO mapToDTO(final Student student);
+
+    Student mapToDomain(final StudentDTO studentDTO);
 }

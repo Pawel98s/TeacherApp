@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj ucznia</title>
+</head>
+<body>
+<h1>Dodaj ucznia</h1>
+<form th:action="@{/student/add}" th:object="${student}" method="post">
+    <label for="name">Imię:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <label for="surname">Nazwisko:</label>
+    <input type="text" id="surname" name="surname" required>
+    <br>
+    <label for="studentClass">Klasa:</label>
+    <select id="studentClass" name="studentClass">
+        <option value="CLASS_1_PODSTAWOWKA">1 PODSTAWOWKA</option>
+        <option value="CLASS_2_PODSTAWOWKA">2 PODSTAWOWKA</option>
+        <!-- Dodaj pozostałe klasy -->
+    </select>
+    <br>
+    <label for="phone">Telefon:</label>
+    <input type="text" id="phone" name="phone">
+    <br>
+    <label for="notes">Notatki:</label>
+    <textarea id="notes" name="notes"></textarea>
+    <br>
+    <button type="submit">Dodaj ucznia</button>
+</form>
+</body>
+</html>
