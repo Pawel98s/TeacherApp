@@ -35,5 +35,11 @@ public class StudentRepository implements StudentDAO {
               .collect(Collectors.toList());
    }
 
+   @Override
+   public void delete(Student student) {
+      StudentEntity studentEntity = studentEntityMapper.mapToEntity(student);
+      studentJpaRepository.delete(studentEntity);
+   }
+
 
 }

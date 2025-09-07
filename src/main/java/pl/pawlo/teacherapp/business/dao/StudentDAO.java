@@ -11,5 +11,7 @@ public interface StudentDAO {
 
     List<Student> findAll();
 
+    void delete(Student student);
+
 
 }

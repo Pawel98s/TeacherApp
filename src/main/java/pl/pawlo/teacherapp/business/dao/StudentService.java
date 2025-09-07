@@ -25,6 +25,11 @@ public class StudentService {
         return studentDAO.findAll();
     }
 
+    @Transactional
+    public void delate(Student student){
+        studentDAO.delete(student);
+    }
+
 
 
 
