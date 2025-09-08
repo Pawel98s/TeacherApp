@@ -30,6 +30,11 @@ public class StudentService {
         studentDAO.delete(student);
     }
 
+    @Transactional
+    public void deleteById(Integer studentId){
+        studentDAO.deleteById(studentId);
+    }
+
 
 
 

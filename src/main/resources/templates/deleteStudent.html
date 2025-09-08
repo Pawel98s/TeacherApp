@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Lista studentów</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Usuń</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.surname}"></td>
+        <td>
+            <form th:action="@{/student/delete}" method="post"
+                  onsubmit="return confirm('Czy na pewno chcesz usunąć tego studenta?');">
+                <input type="hidden" name="studentId" th:value="${student.studentId}" />
+                <button type="submit">Usuń</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

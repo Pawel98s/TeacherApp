@@ -41,5 +41,10 @@ public class StudentRepository implements StudentDAO {
       studentJpaRepository.delete(studentEntity);
    }
 
+   @Override
+   public void deleteById(Integer studentId) {
+      studentJpaRepository.deleteById(studentId);
+   }
+
 
 }

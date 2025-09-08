@@ -3,10 +3,7 @@ package pl.pawlo.teacherapp.api.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.pawlo.teacherapp.api.dto.StudentDTO;
 import pl.pawlo.teacherapp.api.dto.mapper.StudentMapper;
 import pl.pawlo.teacherapp.business.dao.StudentDAO;
@@ -47,6 +44,18 @@ public class StudentController {
     public String studentsPage(Model model) {
         model.addAttribute("students", studentService.findAll());
         return "listStudents";
+    }
+
+    @GetMapping("/delete")
+    public String deleteStudentPage(Model model){
+        model.addAttribute("students",studentService.findAll());
+        return "deleteStudent";
+    }
+
+    @PostMapping("/delete")
+    public String deleteStudent(@RequestParam Integer studentId) {
+        studentService.deleteById(studentId);
+        return "redirect:/deleteStudent";
     }
 
 
