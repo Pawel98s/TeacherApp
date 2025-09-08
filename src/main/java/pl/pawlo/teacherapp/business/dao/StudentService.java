@@ -26,7 +26,7 @@ public class StudentService {
     }
 
     @Transactional
-    public void delate(Student student){
+    public void delete(Student student){
         studentDAO.delete(student);
     }
 

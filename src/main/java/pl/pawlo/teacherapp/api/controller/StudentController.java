@@ -10,6 +10,9 @@ import pl.pawlo.teacherapp.business.dao.StudentDAO;
 import pl.pawlo.teacherapp.business.dao.StudentService;
 import pl.pawlo.teacherapp.database.repository.StudentRepository;
 import pl.pawlo.teacherapp.domain.SchoolClass;
+import pl.pawlo.teacherapp.domain.Student;
+
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -48,14 +51,16 @@ public class StudentController {
 
     @GetMapping("/delete")
     public String deleteStudentPage(Model model){
-        model.addAttribute("students",studentService.findAll());
+        List<Student> students = studentService.findAll();
+        model.addAttribute("students", students);
+        students.forEach(s -> System.out.println(s.getStudentId() + ": " + s.getName()));
         return "deleteStudent";
     }
 
     @PostMapping("/delete")
     public String deleteStudent(@RequestParam Integer studentId) {
         studentService.deleteById(studentId);
-        return "redirect:/deleteStudent";
+        return "redirect:/student/delete";
     }
 
 
