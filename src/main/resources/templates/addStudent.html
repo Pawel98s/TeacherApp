@@ -7,37 +7,44 @@
 <body>
 <h1>Dodaj ucznia</h1>
 <form th:action="@{/student/add}" th:object="${student}" method="post">
-    <label for="name">Imię:</label>
-    <input type="text" id="name" name="name" required>
+    <label th:for="*{name}">Imię:</label>
+    <input th:field="*{name}" required>
     <br>
-    <label for="surname">Nazwisko:</label>
-    <input type="text" id="surname" name="surname" required>
+    <label th:for="*{surname}">Nazwisko:</label>
+    <input th:field="*{surname}" required>
     <br>
-    <label for="studentClass">Klasa:</label>
-    <select id="studentClass" name="studentClass">
-        <option value="CLASS_1_PODSTAWOWKA">1 PODSTAWOWKA</option>
-        <option value="CLASS_2_PODSTAWOWKA">2 PODSTAWOWKA</option>
-        <option value="CLASS_3_PODSTAWOWKA">3 PODSTAWOWKA</option>
-        <option value="CLASS_4_PODSTAWOWKA">4 PODSTAWOWKA</option>
-        <option value="CLASS_5_PODSTAWOWKA">5 PODSTAWOWKA</option>
-        <option value="CLASS_6_PODSTAWOWKA">6 PODSTAWOWKA</option>
-        <option value="CLASS_7_PODSTAWOWKA">7 PODSTAWOWKA</option>
-        <option value="CLASS_8_PODSTAWOWKA">8 PODSTAWOWKA</option>
-        <option value="CLASS_1_LICEUM">1 LICEUM</option>
-        <option value="CLASS_2_LICEUM">2 LICEUM</option>
-        <option value="CLASS_3_LICEUM">3 LICEUM</option>
-        <option value="CLASS_1_TECHNIKUM">1 TECHNIKUM</option>
-        <option value="CLASS_2_TECHNIKUM">2 TECHNIKUM</option>
-        <option value="CLASS_3_TECHNIKUM">3 TECHNIKUM</option>
-        <option value="CLASS_4_TECHNIKUM">4 TECHNIKUM</option>
-        <option value="CLASS_MATURALNA">KLASA MATURALNA</option>
+    <label th:for="*{studentClass}">Klasa</label>
+    <select th:field="*{studentClass}">
+        <option th:each="class : ${schoolClass}"
+                th:value="${class}"
+                th:text="${class.label}">
     </select>
+
+<!--    <label th:for="*{studentClass}">Klasa:</label>-->
+<!--    <select th:field="*{studentClass}">-->
+<!--        <option value="CLASS_1_PODSTAWOWKA">1 PODSTAWOWKA</option>-->
+<!--        <option value="CLASS_2_PODSTAWOWKA">2 PODSTAWOWKA</option>-->
+<!--        <option value="CLASS_3_PODSTAWOWKA">3 PODSTAWOWKA</option>-->
+<!--        <option value="CLASS_4_PODSTAWOWKA">4 PODSTAWOWKA</option>-->
+<!--        <option value="CLASS_5_PODSTAWOWKA">5 PODSTAWOWKA</option>-->
+<!--        <option value="CLASS_6_PODSTAWOWKA">6 PODSTAWOWKA</option>-->
+<!--        <option value="CLASS_7_PODSTAWOWKA">7 PODSTAWOWKA</option>-->
+<!--        <option value="CLASS_8_PODSTAWOWKA">8 PODSTAWOWKA</option>-->
+<!--        <option value="CLASS_1_LICEUM">1 LICEUM</option>-->
+<!--        <option value="CLASS_2_LICEUM">2 LICEUM</option>-->
+<!--        <option value="CLASS_3_LICEUM">3 LICEUM</option>-->
+<!--        <option value="CLASS_1_TECHNIKUM">1 TECHNIKUM</option>-->
+<!--        <option value="CLASS_2_TECHNIKUM">2 TECHNIKUM</option>-->
+<!--        <option value="CLASS_3_TECHNIKUM">3 TECHNIKUM</option>-->
+<!--        <option value="CLASS_4_TECHNIKUM">4 TECHNIKUM</option>-->
+<!--        <option value="CLASS_MATURALNA">KLASA MATURALNA</option>-->
+<!--    </select>-->
     <br>
-    <label for="phone">Telefon:</label>
-    <input type="text" id="phone" name="phone">
+    <label th:for="*{phone}">Telefon:</label>
+    <input th:field="*{phone}">
     <br>
-    <label for="notes">Notatki:</label>
-    <textarea id="notes" name="notes"></textarea>
+    <label th:for="*{notes}">Notatki:</label>
+    <textarea th:field="*{notes}"></textarea>
     <br>
     <button type="submit">Dodaj ucznia</button>
 </form>

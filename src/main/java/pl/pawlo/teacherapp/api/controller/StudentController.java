@@ -6,40 +6,44 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.pawlo.teacherapp.api.dto.StudentDTO;
 import pl.pawlo.teacherapp.api.dto.mapper.StudentMapper;
 import pl.pawlo.teacherapp.business.dao.StudentDAO;
 import pl.pawlo.teacherapp.business.dao.StudentService;
 import pl.pawlo.teacherapp.database.repository.StudentRepository;
+import pl.pawlo.teacherapp.domain.SchoolClass;
 
 @Controller
 @AllArgsConstructor
+@RequestMapping("/student")
 public class StudentController {
 
-    public static final String STUDENT = "/student";
+
 
     private final StudentService studentService;
     private final StudentMapper studentMapper;
 
-    @GetMapping(value = STUDENT)
+    @GetMapping()
     public String studentPage(Model model) {
         model.addAttribute("student",new StudentDTO());
         return "student";
     }
 
-    @PostMapping(value ="/student/add")
+    @GetMapping("/add")
+    public String addStudentPage(Model model) {
+        model.addAttribute("student", new StudentDTO());
+        model.addAttribute("schoolClass",SchoolClass.values());
+        return "addStudent";
+    }
+
+    @PostMapping(value ="/add")
     public String addStudent(@ModelAttribute("student") StudentDTO student) {
         studentService.save(studentMapper.mapToDomain(student));
         return "redirect:/student";
     }
 
-    @GetMapping("/student/add")
-    public String addStudentPage(Model model) {
-        model.addAttribute("student", new StudentDTO());
-        return "addStudent";
-    }
-
-    @GetMapping("/student/list")
+    @GetMapping("/list")
     public String studentsPage(Model model) {
         model.addAttribute("students", studentService.findAll());
         return "listStudents";
