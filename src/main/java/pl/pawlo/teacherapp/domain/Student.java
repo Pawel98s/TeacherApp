@@ -1,16 +1,13 @@
 package pl.pawlo.teacherapp.domain;
 
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Value;
-import lombok.With;
+import lombok.*;
 
 import java.util.List;
 
-@With
-@Value
+
 @Builder
+@Data
 @EqualsAndHashCode(of = "studentId")
 public class Student {
 

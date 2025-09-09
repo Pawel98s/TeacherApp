@@ -4,6 +4,7 @@ package pl.pawlo.teacherapp.business.dao;
 import pl.pawlo.teacherapp.domain.Student;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StudentDAO {
 
@@ -15,5 +16,6 @@ public interface StudentDAO {
 
     void deleteById(Integer studentId);
 
+    Optional<Student> findById(Integer studentId);
 
 }

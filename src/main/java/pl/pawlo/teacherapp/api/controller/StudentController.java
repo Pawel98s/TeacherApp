@@ -51,9 +51,7 @@ public class StudentController {
 
     @GetMapping("/delete")
     public String deleteStudentPage(Model model){
-        List<Student> students = studentService.findAll();
-        model.addAttribute("students", students);
-        students.forEach(s -> System.out.println(s.getStudentId() + ": " + s.getName()));
+        model.addAttribute("students", studentService.findAll());
         return "deleteStudent";
     }
 
@@ -62,6 +60,28 @@ public class StudentController {
         studentService.deleteById(studentId);
         return "redirect:/student/delete";
     }
+
+    @GetMapping("/edit")
+    public String editStudentPage(Model model){
+        model.addAttribute("student",new StudentDTO());
+        model.addAttribute("students", studentService.findAll());
+        model.addAttribute("schoolClass",SchoolClass.values());
+        return "editStudent";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editStudentForm(@PathVariable Integer id, Model model) {
+        Student student = studentService.findById(id);
+        model.addAttribute("student", student);
+        return "editStudentPage";
+    }
+    @PostMapping("/update")
+    public String updateStudent(@ModelAttribute Student student) {
+        studentService.updateStudent(student.getStudentId(), student);
+        return "redirect:/student";
+    }
+
+
 
 
 

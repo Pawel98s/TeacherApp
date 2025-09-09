@@ -10,6 +10,7 @@ import pl.pawlo.teacherapp.database.repository.mapper.StudentEntityMapper;
 import pl.pawlo.teacherapp.domain.Student;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -44,6 +45,12 @@ public class StudentRepository implements StudentDAO {
    @Override
    public void deleteById(Integer studentId) {
       studentJpaRepository.deleteById(studentId);
+   }
+
+   @Override
+   public Optional<Student> findById(Integer studentId) {
+      Optional<StudentEntity> student = studentJpaRepository.findById(studentId);
+      return student.map(studentEntityMapper::mapToDomain);
    }
 
 
