@@ -44,15 +44,21 @@ public class StudentService {
 
     @Transactional
     public Student updateStudent(Integer id,Student student){
-        Student edited = findById(id);
-        if (student.getName() != null) edited.setName(student.getName());
-        if (student.getSurname() != null) edited.setSurname(student.getSurname());
-        if (student.getStudentClass() != null) edited.setStudentClass(student.getStudentClass());
-        if (student.getPhone() != null) edited.setPhone(student.getPhone());
-        if (student.getNotes() != null) edited.setNotes(student.getNotes());
+        Student existing  = findById(id);
 
-        save(edited);
-        return edited;
+        Student updated = Student.builder()
+                .studentId(existing.getStudentId())
+                .name(student.getName() != null ? student.getName() : existing.getName())
+                .surname(student.getSurname() != null ? student.getSurname() : existing.getSurname())
+                .studentClass(student.getStudentClass() != null ? student.getStudentClass() : existing.getStudentClass())
+                .phone(student.getPhone() != null ? student.getPhone() : existing.getPhone())
+                .notes(student.getNotes() != null ? student.getNotes() : existing.getNotes())
+                .grades(existing.getGrades())
+                .build();
+
+
+        save(updated );
+        return updated ;
     }
 
 

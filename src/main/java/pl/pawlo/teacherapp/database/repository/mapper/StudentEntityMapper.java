@@ -14,7 +14,7 @@ public interface StudentEntityMapper {
 
     Student mapToDomain(final StudentEntity entity);
 
-    @Mapping(target = "studentId", ignore = true)
+
     StudentEntity mapToEntity(final Student student);
 
 

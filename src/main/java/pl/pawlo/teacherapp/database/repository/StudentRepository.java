@@ -24,8 +24,7 @@ public class StudentRepository implements StudentDAO {
 
    @Override
    public void save(Student student) {
-      StudentEntity studentEntity = studentEntityMapper.mapToEntity(student);
-      studentJpaRepository.save(studentEntity);
+      studentJpaRepository.save(studentEntityMapper.mapToEntity(student));
    }
 
    @Override
