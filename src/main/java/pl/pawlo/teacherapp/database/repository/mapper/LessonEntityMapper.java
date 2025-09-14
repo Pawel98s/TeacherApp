@@ -1,21 +1,18 @@
 package pl.pawlo.teacherapp.database.repository.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
-import pl.pawlo.teacherapp.api.dto.StudentDTO;
+import pl.pawlo.teacherapp.database.entity.LessonEntity;
 import pl.pawlo.teacherapp.database.entity.StudentEntity;
+import pl.pawlo.teacherapp.domain.Lesson;
 import pl.pawlo.teacherapp.domain.Student;
 
 @Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface StudentEntityMapper {
+public interface LessonEntityMapper {
+
+    Lesson mapToDomain(final LessonEntity lessonEntity);
 
 
-    Student mapToDomain(final StudentEntity studentEntity);
-
-
-    StudentEntity mapToEntity(final Student student);
-
+    LessonEntity mapToEntity(final Lesson lesson);
 
 }

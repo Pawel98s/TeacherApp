@@ -24,5 +24,5 @@ public class LessonDTO {
     BigDecimal price;
     String location;
     String description;
-    Student student;
+    Integer studentId;
 }
