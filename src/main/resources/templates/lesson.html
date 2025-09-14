@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+
+    .menu ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+
+    .menu li {
+      margin: 10px 0;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+    }
+
+    .menu a:hover {
+      color: blue;
+    }
+
+
+
+  </style>
+</head>
+<body>
+<h1 > Zarządzanie lekcjami</h1>
+<div class="menu">
+  <ul>
+    <li><a th:href="@{/lesson/add}" role="button">Dodawanie lekcji</a></li>
+    <li><a th:href="@{/lesson/edit}" role="button">Edycja lekcji</a></li>
+    <li><a th:href="@{/lesson/delete}" role="button">Usuwanie lekcji</a></li>
+    <li><a th:href="@{/lesson/list}" role="button">Lista zajęć</a></li>
+    <li><a th:href="@{/}" role="button">Wstecz</a></li>
+  </ul>
+</div>
+</body>
+</html>

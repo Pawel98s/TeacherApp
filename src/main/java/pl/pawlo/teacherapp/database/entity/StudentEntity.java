@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import pl.pawlo.teacherapp.domain.SchoolClass;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -43,4 +44,7 @@ public class StudentEntity {
 
     @Column(name = "notes")
     String notes;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<LessonEntity> lessons=new ArrayList<>();
 }
