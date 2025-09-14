@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lekcje</title>
+</head>
+<body>
+<h1>Zarezerwowane lekcje</h1>
+
+<form th:action="@{/lesson/list}" method="get">
+  <label for="date">Filtruj wg daty:</label>
+  <input type="date" id="date" name="date" th:value="${selectedDate}">
+  <button type="submit">Szukaj</button>
+  <a th:href="@{/lesson/list}">Wyczyść</a>
+</form>
+
+<table border="1">
+  <tr>
+    <th>Data</th>
+    <th>Godzina rozpoczęcia</th>
+    <th>Godzina zakończenia</th>
+    <th>Cena</th>
+    <th>Lokalizacja</th>
+    <th>Opis</th>
+    <th>Student</th>
+    <th>Klasa</th>
+  </tr>
+  <tr th:each="lesson : ${lessons}">
+    <td th:text="${lesson.date}"></td>
+    <td th:text="${lesson.startLesson}"></td>
+    <td th:text="${lesson.endLesson}"></td>
+    <td th:text="${lesson.price}"></td>
+    <td th:text="${lesson.location}"></td>
+    <td th:text="${lesson.description}"></td>
+    <td th:text="${lesson.student.name + ' ' + lesson.student.surname}"></td>
+    <td th:text="${lesson.student.studentClass.label}"></td>
+  </tr>
+</table>
+</body>
+</html>

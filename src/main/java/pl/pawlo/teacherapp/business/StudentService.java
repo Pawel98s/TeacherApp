@@ -1,13 +1,13 @@
-package pl.pawlo.teacherapp.business.dao;
+package pl.pawlo.teacherapp.business;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import pl.pawlo.teacherapp.database.repository.StudentRepository;
+import pl.pawlo.teacherapp.business.dao.StudentDAO;
 import pl.pawlo.teacherapp.domain.Student;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

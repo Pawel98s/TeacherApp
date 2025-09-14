@@ -6,13 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.pawlo.teacherapp.api.dto.StudentDTO;
 import pl.pawlo.teacherapp.api.dto.mapper.StudentMapper;
-import pl.pawlo.teacherapp.business.dao.StudentDAO;
-import pl.pawlo.teacherapp.business.dao.StudentService;
-import pl.pawlo.teacherapp.database.repository.StudentRepository;
+import pl.pawlo.teacherapp.business.StudentService;
 import pl.pawlo.teacherapp.domain.SchoolClass;
 import pl.pawlo.teacherapp.domain.Student;
-
-import java.util.List;
 
 @Controller
 @AllArgsConstructor

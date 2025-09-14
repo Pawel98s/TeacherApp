@@ -2,7 +2,6 @@ package pl.pawlo.teacherapp.database.repository;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
-import pl.pawlo.teacherapp.api.dto.StudentDTO;
 import pl.pawlo.teacherapp.business.dao.StudentDAO;
 import pl.pawlo.teacherapp.database.entity.StudentEntity;
 import pl.pawlo.teacherapp.database.repository.jpa.StudentJpaRepository;

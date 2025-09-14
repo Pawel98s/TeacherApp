@@ -2,22 +2,19 @@ package pl.pawlo.teacherapp.api.controller;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.pawlo.teacherapp.api.dto.LessonDTO;
-import pl.pawlo.teacherapp.api.dto.StudentDTO;
 import pl.pawlo.teacherapp.api.dto.mapper.LessonMapper;
 import pl.pawlo.teacherapp.api.dto.mapper.StudentMapper;
-import pl.pawlo.teacherapp.business.dao.LessonService;
-import pl.pawlo.teacherapp.business.dao.StudentService;
-import pl.pawlo.teacherapp.database.entity.LessonEntity;
-import pl.pawlo.teacherapp.database.entity.StudentEntity;
+import pl.pawlo.teacherapp.business.LessonService;
+import pl.pawlo.teacherapp.business.StudentService;
 import pl.pawlo.teacherapp.domain.Lesson;
-import pl.pawlo.teacherapp.domain.Student;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -46,5 +43,29 @@ public class LessonController {
     public String saveLesson(@ModelAttribute("lesson") LessonDTO lesson) {
         lessonService.saveFromDTO(lesson);
         return "redirect:/lesson";
+    }
+
+//    @GetMapping("/list")
+//    public String getLessonList(Model model) {
+//        List<Lesson> lessons = lessonService.findAll();
+//        model.addAttribute("lessons", lessons);
+//        return "listLessons";
+//    }
+
+    @GetMapping("/list")
+    public String getLessonList(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+                                Model model) {
+        List<Lesson> lessons;
+
+        if (date != null) {
+            lessons = lessonService.findByDateOrderByStartLessonAsc(date);
+        } else {
+            lessons = lessonService.findAll();
+        }
+
+        model.addAttribute("lessons", lessons);
+        model.addAttribute("selectedDate", date);
+
+        return "listLessons";
     }
 }

@@ -1,11 +1,15 @@
-package pl.pawlo.teacherapp.business.dao;
+package pl.pawlo.teacherapp.business;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.pawlo.teacherapp.api.dto.LessonDTO;
+import pl.pawlo.teacherapp.business.dao.LessonDAO;
 import pl.pawlo.teacherapp.domain.Lesson;
 import pl.pawlo.teacherapp.domain.Student;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -20,6 +24,7 @@ public class LessonService {
         lessonDao.save(lesson);
     }
 
+    @Transactional
     public void saveFromDTO(LessonDTO lessonDTO) {
 
         Student student = studentService.findById(lessonDTO.getStudentId());
@@ -36,4 +41,15 @@ public class LessonService {
                 .build();
         save(lesson);
     }
+
+    @Transactional
+    public List<Lesson> findAll(){
+        return lessonDao.findAll();
+    }
+
+    @Transactional
+    public List<Lesson> findByDateOrderByStartLessonAsc(LocalDate date){
+        return lessonDao.findByDateOrderByStartLessonAsc(date);
+    }
+
 }
