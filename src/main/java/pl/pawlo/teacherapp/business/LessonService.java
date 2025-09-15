@@ -77,4 +77,9 @@ public class LessonService {
 
     }
 
+    @Transactional
+    public void deleteById(Integer id) {
+        lessonDao.deleteById(id);
+    }
+
 }

@@ -10,11 +10,11 @@ public interface LessonDAO {
 
     void save(Lesson lesson);
 
-
     List<Lesson> findAll();
 
     List<Lesson> findByDateOrderByStartLessonAsc(LocalDate date);
 
     Optional<Lesson> findById(Integer id);
 
+    void deleteById(Integer id);
 }

@@ -35,9 +35,13 @@
     <td th:text="${lesson.student.name + ' ' + lesson.student.surname}"></td>
     <td th:text="${lesson.student.studentClass.label}"></td>
     <td>
-      <a th:href="@{'/lesson/edit/' + ${lesson.lessonId}}">Edytuj</a>
+      <a th:href="@{/lesson/edit/{id}(id=${lesson.lessonId})}">Edytuj</a>
+      <a th:href="@{/lesson/delete/{id}(id=${lesson.lessonId})}"
+         onclick="return confirm('Na pewno chcesz usunąć tę lekcję?')">Usuń</a>
+
     </td>
   </tr>
 </table>
+<a th:href="@{/lesson}" role="button">Wstecz</a>
 </body>
 </html>

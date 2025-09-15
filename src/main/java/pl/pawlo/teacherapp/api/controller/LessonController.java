@@ -79,10 +79,18 @@ public class LessonController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateLesson(@PathVariable Integer id,
+    public String updateLesson(@PathVariable("id") Integer id,
                                @ModelAttribute("lesson") LessonDTO lessonDTO) {
         lessonService.updateLesson(id, lessonDTO);
         return "redirect:/lesson/list";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteLesson(@PathVariable("id") Integer lessonId) {
+        lessonService.deleteById(lessonId);
+        return "redirect:/lesson/list";
+    }
+
+
 
 }

@@ -51,5 +51,10 @@ public class LessonRepository implements LessonDAO {
 
     }
 
+    @Override
+    public void deleteById(Integer id) {
+        lessonJpaRepository.deleteById(id);
+    }
+
 
 }
