@@ -42,6 +42,8 @@ public class StudentService {
                 .orElseThrow(() -> new RuntimeException("Student not found"));
     }
 
+
+
     @Transactional
     public Student updateStudent(Integer id,Student student){
         Student existing  = findById(id);

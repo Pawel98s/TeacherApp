@@ -4,6 +4,7 @@ import pl.pawlo.teacherapp.domain.Lesson;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface LessonDAO {
 
@@ -13,5 +14,7 @@ public interface LessonDAO {
     List<Lesson> findAll();
 
     List<Lesson> findByDateOrderByStartLessonAsc(LocalDate date);
+
+    Optional<Lesson> findById(Integer id);
 
 }

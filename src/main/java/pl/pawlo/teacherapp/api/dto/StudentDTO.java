@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class StudentDTO {
 
-    Integer studentId;
+
     String name;
     String surname;
     SchoolClass studentClass;

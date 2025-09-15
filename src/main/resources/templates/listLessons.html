@@ -23,6 +23,7 @@
     <th>Opis</th>
     <th>Student</th>
     <th>Klasa</th>
+    <th>Akcja</th>
   </tr>
   <tr th:each="lesson : ${lessons}">
     <td th:text="${lesson.date}"></td>
@@ -33,6 +34,9 @@
     <td th:text="${lesson.description}"></td>
     <td th:text="${lesson.student.name + ' ' + lesson.student.surname}"></td>
     <td th:text="${lesson.student.studentClass.label}"></td>
+    <td>
+      <a th:href="@{'/lesson/edit/' + ${lesson.lessonId}}">Edytuj</a>
+    </td>
   </tr>
 </table>
 </body>

@@ -52,4 +52,29 @@ public class LessonService {
         return lessonDao.findByDateOrderByStartLessonAsc(date);
     }
 
+    @Transactional
+    public Lesson findById(Integer id){
+        return lessonDao.findById(id)
+                .orElseThrow(() -> new RuntimeException("Lesson not found"));
+    }
+
+    @Transactional
+    public void updateLesson(Integer id, LessonDTO lessonDTO) {
+        Lesson lesson = findById(id);
+
+        lesson.setDate(lessonDTO.getDate());
+        lesson.setStartLesson(lessonDTO.getStartLesson());
+        lesson.setEndLesson(lessonDTO.getEndLesson());
+        lesson.setPrice(lessonDTO.getPrice());
+        lesson.setLocation(lessonDTO.getLocation());
+        lesson.setDescription(lessonDTO.getDescription());
+
+        if (lessonDTO.getStudentId() != null){
+            Student student = studentService.findById(lessonDTO.getStudentId());
+            lesson.setStudent(student);
+        }
+        save(lesson);
+
+    }
+
 }

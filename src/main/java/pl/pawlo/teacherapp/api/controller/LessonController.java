@@ -68,4 +68,21 @@ public class LessonController {
 
         return "listLessons";
     }
+
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable Integer id, Model model) {
+        LessonDTO lesson = lessonMapper.mapToDTO(lessonService.findById(id));
+        model.addAttribute("lesson", lesson);
+        model.addAttribute("students", studentService.findAll());
+        return "lessonEdit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateLesson(@PathVariable Integer id,
+                               @ModelAttribute("lesson") LessonDTO lessonDTO) {
+        lessonService.updateLesson(id, lessonDTO);
+        return "redirect:/lesson/list";
+    }
+
 }

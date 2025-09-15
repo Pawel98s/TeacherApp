@@ -10,6 +10,7 @@ import pl.pawlo.teacherapp.domain.Lesson;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -40,6 +41,14 @@ public class LessonRepository implements LessonDAO {
                 .stream()
                 .map(lessonEntityMapper::mapToDomain)
                 .toList();
+    }
+
+    @Override
+    public Optional<Lesson> findById(Integer id) {
+        return lessonJpaRepository.findById(id)
+                .map(lessonEntityMapper::mapToDomain);
+
+
     }
 
 

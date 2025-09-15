@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj lekcję</title>
+</head>
+<body>
+<h1>Edytuj lekcję</h1>
+
+<form th:action="@{'/lesson/edit/' + ${lesson.lessonId}}" th:object="${lesson}" method="post">
+
+    <input type="hidden" th:field="*{lessonId}" />
+
+    <label>Data:</label>
+    <input type="date" th:field="*{date}" /><br/>
+
+    <label>Początek lekcji:</label>
+    <input type="time" th:field="*{startLesson}" /><br/>
+
+    <label>Koniec lekcji:</label>
+    <input type="time" th:field="*{endLesson}" /><br/>
+
+    <label>Cena:</label>
+    <input type="number" step="0.01" th:field="*{price}" /><br/>
+
+    <label>Lokalizacja:</label>
+    <input type="text" th:field="*{location}" /><br/>
+
+    <label>Opis:</label>
+    <textarea th:field="*{description}"></textarea><br/>
+
+    <label>Student:</label>
+    <select th:field="*{studentId}">
+        <option th:each="s : ${students}"
+                th:value="${s.studentId}"
+                th:text="${s.name + ' ' + s.surname}">
+        </option>
+    </select><br/><br/>
+
+    <button type="submit">Zapisz zmiany</button>
+</form>
+
+<a th:href="@{/lesson/list}">Powrót do listy lekcji</a>
+</body>
+</html>
