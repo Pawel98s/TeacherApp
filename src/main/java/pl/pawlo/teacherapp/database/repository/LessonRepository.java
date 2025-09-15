@@ -1,6 +1,7 @@
 package pl.pawlo.teacherapp.database.repository;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import pl.pawlo.teacherapp.business.dao.LessonDAO;
 import pl.pawlo.teacherapp.database.entity.LessonEntity;
@@ -29,7 +30,7 @@ public class LessonRepository implements LessonDAO {
 
     @Override
     public List<Lesson> findAll() {
-        return lessonJpaRepository.findAll()
+        return lessonJpaRepository.findAll(Sort.by(Sort.Direction.ASC, "date"))
                 .stream()
                 .map(lessonEntityMapper::mapToDomain)
                 .collect(Collectors.toList());

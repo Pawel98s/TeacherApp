@@ -66,7 +66,7 @@ public class StudentController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editStudentForm(@PathVariable Integer id, Model model) {
+    public String editStudentForm(@PathVariable("id") Integer id, Model model) {
         Student student = studentService.findById(id);
         model.addAttribute("student", student);
         return "editStudentPage";

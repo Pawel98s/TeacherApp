@@ -2,6 +2,7 @@ package pl.pawlo.teacherapp.business;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.pawlo.teacherapp.api.dto.LessonDTO;
 import pl.pawlo.teacherapp.business.dao.LessonDAO;
