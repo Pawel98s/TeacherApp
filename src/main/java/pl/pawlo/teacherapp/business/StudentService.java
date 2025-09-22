@@ -63,6 +63,11 @@ public class StudentService {
         return updated ;
     }
 
+    @Transactional
+    public long countStudents(){
+        return studentDAO.countStudents();
+    }
+
 
 
 

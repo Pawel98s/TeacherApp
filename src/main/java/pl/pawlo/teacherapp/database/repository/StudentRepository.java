@@ -51,5 +51,10 @@ public class StudentRepository implements StudentDAO {
       return student.map(studentEntityMapper::mapToDomain);
    }
 
+   @Override
+   public long countStudents() {
+      return studentJpaRepository.count();
+   }
+
 
 }

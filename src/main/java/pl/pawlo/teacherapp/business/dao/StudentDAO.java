@@ -18,4 +18,6 @@ public interface StudentDAO {
 
     Optional<Student> findById(Integer studentId);
 
+    long countStudents();
+
 }
