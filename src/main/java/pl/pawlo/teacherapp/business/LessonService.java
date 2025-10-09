@@ -89,6 +89,12 @@ public class LessonService {
 
 
     @Transactional
+    public void saveAll(List<Lesson> lessons) {
+        lessonDao.saveAll(lessons);
+    }
+
+
+    @Transactional
     public void saveScheduledLessons(
             Student student,
             DayOfWeek dayOfWeek,

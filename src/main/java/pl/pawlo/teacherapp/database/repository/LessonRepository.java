@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository
 @AllArgsConstructor
@@ -58,10 +59,11 @@ public class LessonRepository implements LessonDAO {
     }
 
 
-    //TODO implement
+
     @Override
     public void saveAll(List<Lesson> lessons) {
-
+        List<LessonEntity> list = lessons.stream().map(lessonEntityMapper::mapToEntity).toList();
+        lessonJpaRepository.saveAll(list);
     }
 
 
