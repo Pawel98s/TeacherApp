@@ -17,4 +17,6 @@ public interface LessonDAO {
     Optional<Lesson> findById(Integer id);
 
     void deleteById(Integer id);
+
+    void saveAll(List<Lesson> lessons);
 }

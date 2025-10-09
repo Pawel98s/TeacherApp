@@ -58,4 +58,11 @@ public class LessonRepository implements LessonDAO {
     }
 
 
+    //TODO implement
+    @Override
+    public void saveAll(List<Lesson> lessons) {
+
+    }
+
+
 }

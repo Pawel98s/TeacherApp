@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import pl.pawlo.teacherapp.domain.Student;
 
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -25,4 +26,7 @@ public class LessonDTO {
     String location;
     String description;
     Integer studentId;
+    DayOfWeek dayOfWeek;
+    LocalDate startDate;
+    LocalDate endDate;
 }

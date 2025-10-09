@@ -9,7 +9,11 @@ import pl.pawlo.teacherapp.business.dao.LessonDAO;
 import pl.pawlo.teacherapp.domain.Lesson;
 import pl.pawlo.teacherapp.domain.Student;
 
+import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -82,5 +86,45 @@ public class LessonService {
     public void deleteById(Integer id) {
         lessonDao.deleteById(id);
     }
+
+
+    @Transactional
+    public void saveScheduledLessons(
+            Student student,
+            DayOfWeek dayOfWeek,
+            LocalTime startLesson,
+            LocalTime endLesson,
+            BigDecimal price,
+            String location,
+            String description,
+            LocalDate startDate,
+            LocalDate endDate
+    ){
+        List<Lesson> lessons= new ArrayList<>();
+
+        LocalDate currentDate = startDate;
+
+        while(currentDate.getDayOfWeek() != dayOfWeek){
+            currentDate=currentDate.plusDays(1);
+        }
+
+        while (!currentDate.isAfter(endDate)){
+            Lesson lesson = Lesson.builder()
+                    .student(student)
+                    .date(currentDate)
+                    .startLesson(startLesson)
+                    .endLesson(endLesson)
+                    .price(price)
+                    .location(location)
+                    .description(description)
+                    .build();
+
+            lessons.add(lesson);
+            save(lesson);
+            currentDate= currentDate.plusWeeks(1);
+
+        }
+    }
+
 
 }

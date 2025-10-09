@@ -13,6 +13,7 @@ import pl.pawlo.teacherapp.business.LessonService;
 import pl.pawlo.teacherapp.business.StudentService;
 import pl.pawlo.teacherapp.domain.Lesson;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -88,6 +89,32 @@ public class LessonController {
     @GetMapping("/delete/{id}")
     public String deleteLesson(@PathVariable("id") Integer lessonId) {
         lessonService.deleteById(lessonId);
+        return "redirect:/lesson/list";
+    }
+
+    @GetMapping("/schedule")
+    public String showScheduleForm(Model model) {
+        model.addAttribute("students", studentService.findAll());
+        model.addAttribute("daysOfWeek", DayOfWeek.values());
+        model.addAttribute("lessonForm", new LessonDTO());
+        return "schedulePage";
+    }
+    @PostMapping("/schedule")
+    public String saveScheduledLessons(@ModelAttribute LessonDTO lessonDTO, Model model) {
+
+        lessonService.saveScheduledLessons(
+                studentService.findById(lessonDTO.getStudentId()),
+                lessonDTO.getDayOfWeek(),
+                lessonDTO.getStartLesson(),
+                lessonDTO.getEndLesson(),
+                lessonDTO.getPrice(),
+                lessonDTO.getLocation(),
+                lessonDTO.getDescription(),
+                lessonDTO.getStartDate(),
+                lessonDTO.getEndDate()
+        );
+
+        model.addAttribute("message", "Lekcje zostały zapisane!");
         return "redirect:/lesson/list";
     }
 
