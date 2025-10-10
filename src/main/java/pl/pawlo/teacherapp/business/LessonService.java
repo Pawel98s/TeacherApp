@@ -44,6 +44,7 @@ public class LessonService {
                 .location(lessonDTO.getLocation())
                 .description(lessonDTO.getDescription())
                 .student(student)
+                .status(LessonStatus.W_REALIZACJI)
                 .build();
         save(lesson);
     }
@@ -124,6 +125,7 @@ public class LessonService {
                     .price(price)
                     .location(location)
                     .description(description)
+                    .status(LessonStatus.W_REALIZACJI)
                     .build();
 
             lessons.add(lesson);

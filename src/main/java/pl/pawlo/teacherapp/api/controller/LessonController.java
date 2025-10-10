@@ -113,6 +113,7 @@ public class LessonController {
                 lessonDTO.getDescription(),
                 lessonDTO.getStartDate(),
                 lessonDTO.getEndDate()
+
         );
 
         model.addAttribute("message", "Lekcje zostały zapisane!");
