@@ -142,4 +142,13 @@ public class LessonService {
         lesson.setStatus(status);
         save(lesson);
     }
+
+
+    @Transactional
+    public List<Lesson> findLessonsWithStatusForRealization(){
+        List<Lesson> lessons = findAll();
+        return lessons.stream()
+                .filter(lesson-> lesson.getStatus().equals(LessonStatus.W_REALIZACJI))
+                .toList();
+    }
 }

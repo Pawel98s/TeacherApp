@@ -71,6 +71,24 @@ public class LessonController {
         return "listLessons";
     }
 
+    @GetMapping("/listForRealization")
+    public String getLessonListWithStatusForRealization(
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+                                Model model) {
+        List<Lesson> lessons;
+
+        if (date != null) {
+            lessons = lessonService.findByDateOrderByStartLessonAsc(date);
+        } else {
+            lessons = lessonService.findLessonsWithStatusForRealization();
+        }
+
+        model.addAttribute("lessons", lessons);
+        model.addAttribute("selectedDate", date);
+
+        return "listLessonsForRealization";
+    }
+
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Integer id, Model model) {
@@ -124,7 +142,7 @@ public class LessonController {
     public String updateLessonStatus(@PathVariable("id") Integer id,
                                      @RequestParam("status") LessonStatus status) {
         lessonService.updateLessonStatus(id, status);
-        return "redirect:/lesson/list";
+        return "redirect:/lesson/listForRealization";
     }
 
 
