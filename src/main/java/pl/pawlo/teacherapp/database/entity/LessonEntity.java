@@ -2,6 +2,7 @@ package pl.pawlo.teacherapp.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import pl.pawlo.teacherapp.domain.LessonStatus;
 import pl.pawlo.teacherapp.domain.Student;
 
 import java.math.BigDecimal;
@@ -41,6 +42,10 @@ public class LessonEntity {
 
     @Column(name = "description")
     String description;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    LessonStatus status = LessonStatus.W_REALIZACJI;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id", nullable = false)

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import pl.pawlo.teacherapp.api.dto.LessonDTO;
 import pl.pawlo.teacherapp.business.dao.LessonDAO;
 import pl.pawlo.teacherapp.domain.Lesson;
+import pl.pawlo.teacherapp.domain.LessonStatus;
 import pl.pawlo.teacherapp.domain.Student;
 
 import java.math.BigDecimal;
@@ -133,4 +134,10 @@ public class LessonService {
     }
 
 
+    @Transactional
+    public void updateLessonStatus(Integer id, LessonStatus status) {
+        Lesson lesson = findById(id);
+        lesson.setStatus(status);
+        save(lesson);
+    }
 }

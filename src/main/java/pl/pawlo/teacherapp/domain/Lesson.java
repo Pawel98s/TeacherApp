@@ -22,6 +22,7 @@ public class Lesson {
     String location;
     String description;
     Student student;
+    LessonStatus status;
 
 
 }

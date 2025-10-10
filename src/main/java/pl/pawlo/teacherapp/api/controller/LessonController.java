@@ -12,6 +12,7 @@ import pl.pawlo.teacherapp.api.dto.mapper.StudentMapper;
 import pl.pawlo.teacherapp.business.LessonService;
 import pl.pawlo.teacherapp.business.StudentService;
 import pl.pawlo.teacherapp.domain.Lesson;
+import pl.pawlo.teacherapp.domain.LessonStatus;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -115,6 +116,13 @@ public class LessonController {
         );
 
         model.addAttribute("message", "Lekcje zostały zapisane!");
+        return "redirect:/lesson/list";
+    }
+
+    @PostMapping("/{id}/status")
+    public String updateLessonStatus(@PathVariable("id") Integer id,
+                                     @RequestParam("status") LessonStatus status) {
+        lessonService.updateLessonStatus(id, status);
         return "redirect:/lesson/list";
     }
 

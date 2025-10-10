@@ -23,6 +23,8 @@
     <th>Opis</th>
     <th>Student</th>
     <th>Klasa</th>
+    <th>Status lekcji</th>
+    <th>Zmiana statusu lekcji</th>
     <th>Akcja</th>
   </tr>
   <tr th:each="lesson : ${lessons}">
@@ -34,12 +36,25 @@
     <td th:text="${lesson.description}"></td>
     <td th:text="${lesson.student.name + ' ' + lesson.student.surname}"></td>
     <td th:text="${lesson.student.studentClass.label}"></td>
+    <td th:text="${lesson.status.label}"></td>
+    <td>
+      <form th:action="@{'/lesson/' + ${lesson.lessonId} + '/status'}" method="post">
+        <select name="status">
+          <option th:each="s : ${T(pl.pawlo.teacherapp.domain.LessonStatus).values()}"
+                  th:value="${s}"
+                  th:text="${s.label}"
+                  th:selected="${lesson.status == s}">
+          </option>
+        </select>
+        <button type="submit">Zmień</button>
+      </form>
+    </td>
     <td>
       <a th:href="@{/lesson/edit/{id}(id=${lesson.lessonId})}">Edytuj</a>
       <a th:href="@{/lesson/delete/{id}(id=${lesson.lessonId})}"
          onclick="return confirm('Na pewno chcesz usunąć tę lekcję?')">Usuń</a>
-
     </td>
+
   </tr>
 </table>
 <a th:href="@{/lesson}" role="button">Wstecz</a>

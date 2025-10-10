@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.pawlo.teacherapp.domain.LessonStatus;
 import pl.pawlo.teacherapp.domain.Student;
 
 import java.math.BigDecimal;
@@ -29,4 +30,5 @@ public class LessonDTO {
     DayOfWeek dayOfWeek;
     LocalDate startDate;
     LocalDate endDate;
+    LessonStatus status;
 }
