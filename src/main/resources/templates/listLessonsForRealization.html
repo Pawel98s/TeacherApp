@@ -4,7 +4,7 @@
     <title>Lekcje</title>
 </head>
 <body>
-<h1>Zarezerwowane lekcje</h1>
+<h1> Lekcje do zrealizowania</h1>
 
 <form th:action="@{/lesson/list}" method="get">
     <label for="date">Filtruj wg daty:</label>
@@ -38,7 +38,7 @@
         <td th:text="${lesson.student.studentClass.label}"></td>
         <td th:text="${lesson.status.label}"></td>
         <td>
-            <form th:action="@{'/lesson/' + ${lesson.lessonId} + '/status'}" method="post">
+            <form th:action="@{'/lesson/' + ${lesson.lessonId} + '/statusRealization'}" method="post">
                 <select name="status">
                     <option th:each="s : ${T(pl.pawlo.teacherapp.domain.LessonStatus).values()}"
                             th:value="${s}"

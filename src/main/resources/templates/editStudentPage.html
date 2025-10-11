@@ -15,8 +15,12 @@
   <label>Nazwisko:</label>
   <input type="text" th:field="*{surname}" /><br/>
 
-  <label>Klasa:</label>
-  <input type="text" th:field="*{studentClass}" /><br/>
+  <label th:for="*{studentClass}">Klasa</label>
+  <select th:field="*{studentClass}">
+    <option th:each="class : ${schoolClass}"
+            th:value="${class}"
+            th:text="${class.label}">
+  </select><br/>
 
   <label>Telefon:</label>
   <input type="text" th:field="*{phone}" /><br/>

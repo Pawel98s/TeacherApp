@@ -89,6 +89,42 @@ public class LessonController {
         return "listLessonsForRealization";
     }
 
+    @GetMapping("/listFinished")
+    public String getLessonListWithStatusFinished(
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            Model model) {
+        List<Lesson> lessons;
+
+        if (date != null) {
+            lessons = lessonService.findByDateOrderByStartLessonAsc(date);
+        } else {
+            lessons = lessonService.findLessonsWithStatusFinished();
+        }
+
+        model.addAttribute("lessons", lessons);
+        model.addAttribute("selectedDate", date);
+
+        return "listLessonsFinished";
+    }
+
+    @GetMapping("/listCancelled")
+    public String getLessonListWithStatusCancelled(
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            Model model) {
+        List<Lesson> lessons;
+
+        if (date != null) {
+            lessons = lessonService.findByDateOrderByStartLessonAsc(date);
+        } else {
+            lessons = lessonService.findLessonsWithStatusCancelled();
+        }
+
+        model.addAttribute("lessons", lessons);
+        model.addAttribute("selectedDate", date);
+
+        return "listLessonsCanselled";
+    }
+
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Integer id, Model model) {
@@ -142,6 +178,15 @@ public class LessonController {
     public String updateLessonStatus(@PathVariable("id") Integer id,
                                      @RequestParam("status") LessonStatus status) {
         lessonService.updateLessonStatus(id, status);
+
+        return "redirect:/lesson/list";
+    }
+
+    @PostMapping("/{id}/statusRealization")
+    public String updateLessonStatusForRealizationPage(@PathVariable("id") Integer id,
+                                     @RequestParam("status") LessonStatus status) {
+        lessonService.updateLessonStatus(id, status);
+
         return "redirect:/lesson/listForRealization";
     }
 

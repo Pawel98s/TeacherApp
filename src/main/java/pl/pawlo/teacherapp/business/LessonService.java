@@ -151,4 +151,29 @@ public class LessonService {
                 .filter(lesson-> lesson.getStatus().equals(LessonStatus.W_REALIZACJI))
                 .toList();
     }
+
+    @Transactional
+    public List<Lesson> findLessonsWithStatusFinished(){
+        List<Lesson> lessons = findAll();
+        return lessons.stream()
+                .filter(lesson-> lesson.getStatus().equals(LessonStatus.ZAKONCZONA))
+                .toList();
+    }
+
+    @Transactional
+    public List<Lesson> findLessonsWithStatusCancelled(){
+        List<Lesson> lessons = findAll();
+        var cancelledStatuses = List.of(
+                LessonStatus.ANULOWANA,
+                LessonStatus.ODWOŁANA,
+                LessonStatus.ODWOŁANA_USPRAWIEDLIWIONA
+        );
+
+        return findAll().stream()
+                .filter(lesson -> cancelledStatuses.contains(lesson.getStatus()))
+                .toList();
+    }
+
+
+
 }

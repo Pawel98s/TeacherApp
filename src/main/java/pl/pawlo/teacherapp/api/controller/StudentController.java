@@ -63,7 +63,6 @@ public class StudentController {
     public String editStudentPage(Model model){
         model.addAttribute("student",new StudentDTO());
         model.addAttribute("students", studentService.findAll());
-        model.addAttribute("schoolClass",SchoolClass.values());
         return "editStudent";
     }
 
@@ -71,6 +70,7 @@ public class StudentController {
     public String editStudentForm(@PathVariable("id") Integer id, Model model) {
         Student student = studentService.findById(id);
         model.addAttribute("student", student);
+        model.addAttribute("schoolClass",SchoolClass.values());
         return "editStudentPage";
     }
     @PostMapping("/update")
