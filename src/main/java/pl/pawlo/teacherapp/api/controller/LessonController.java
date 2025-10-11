@@ -47,12 +47,7 @@ public class LessonController {
         return "redirect:/lesson";
     }
 
-//    @GetMapping("/list")
-//    public String getLessonList(Model model) {
-//        List<Lesson> lessons = lessonService.findAll();
-//        model.addAttribute("lessons", lessons);
-//        return "listLessons";
-//    }
+
 
     @GetMapping("/list")
     public String getLessonList(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
