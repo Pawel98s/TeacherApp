@@ -15,9 +15,7 @@ public class RaportController {
     private final RaportService raportService;
 
     @GetMapping()
-    public String raportPage(Model model) {
-        model.addAttribute("studentCount", raportService.countStudents());
-        model.addAttribute("lessonCount", raportService.countLessons());
+    public String raportPage() {
         return "raport";
     }
 
