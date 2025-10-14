@@ -26,7 +26,7 @@ public class RaportService {
     }
 
     @Transactional
-    public Integer countProits(){
+    public Integer countProfits(){
         return lessonService.findAll().stream()
                 .filter(lesson -> lesson.getStatus().name().equals("ZREALIZOWANA"))
                 .mapToInt(lesson -> lesson.getPrice().intValue())
