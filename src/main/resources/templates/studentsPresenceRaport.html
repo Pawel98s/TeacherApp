@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Procent obecności uczniów</title>
+  <style>
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      margin: 20px auto;
+    }
+    th, td {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+<h2 style="text-align:center;">Procent obecności uczniów</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Uczeń</th>
+    <th>Procent obecności</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="entry : ${studentsPresence}">
+    <td th:text="${entry.key.name} + ' ' + ${entry.key.surname}">Imię i nazwisko</td>
+    <td th:text="${entry.value} + '%'">0.00%</td>
+  </tr>
+  </tbody>
+</table>
+<a th:href="@{/raport}">Powrót</a>
+</body>
+</html>

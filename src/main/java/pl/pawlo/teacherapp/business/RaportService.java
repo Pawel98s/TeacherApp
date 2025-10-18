@@ -4,6 +4,8 @@ package pl.pawlo.teacherapp.business;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.pawlo.teacherapp.domain.Lesson;
+import pl.pawlo.teacherapp.domain.LessonStatus;
 import pl.pawlo.teacherapp.domain.Student;
 
 import java.math.BigDecimal;
@@ -62,6 +64,39 @@ public class RaportService {
                         .count() > 0)
                 .toList();
     }
+
+    @Transactional
+    public Map<Student, Double> findStudentsPercentageOfPresence() {
+        List<Lesson> allLessons = lessonService.findAll();
+
+        Map<Student, List<Lesson>> lessonsByStudent = allLessons.stream()
+                .collect(Collectors.groupingBy(Lesson::getStudent));
+
+        return studentService.findAll().stream()
+                .collect(Collectors.toMap(
+                        student -> student,
+                        student -> {
+                            List<Lesson> studentLessons = lessonsByStudent.getOrDefault(student, List.of())
+                                    .stream()
+                                    .filter(lesson -> lesson.getStatus() == LessonStatus.ZAKONCZONA
+                                            || lesson.getStatus() == LessonStatus.ODWOŁANA
+                                            || lesson.getStatus() == LessonStatus.ANULOWANA
+                                            || lesson.getStatus() == LessonStatus.ODWOŁANA_USPRAWIEDLIWIONA)
+                                    .toList();
+
+                            if (studentLessons.isEmpty()) {
+                                return 0.0;
+                            }
+
+                            long attendedLessons = studentLessons.stream()
+                                    .filter(lesson -> lesson.getStatus() == LessonStatus.ZAKONCZONA)
+                                    .count();
+
+                            return (attendedLessons * 100.0) / studentLessons.size();
+                        }
+                ));
+    }
+
 
 
 }

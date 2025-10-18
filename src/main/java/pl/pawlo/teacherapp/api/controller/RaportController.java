@@ -12,7 +12,9 @@ import pl.pawlo.teacherapp.domain.Student;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -47,6 +49,21 @@ public class RaportController {
         model.addAttribute("students", students);
         model.addAttribute("profit",raportService.countProfits());
         return "profitRaport";
+    }
+
+    @GetMapping("/presence")
+    public String showStudentsPresence(Model model) {
+        Map<Student, Double> studentsPresence = raportService.findStudentsPercentageOfPresence();
+
+
+        Map<Student, String> formattedPresence = studentsPresence.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> String.format(Locale.US, "%.2f", e.getValue())
+                ));
+
+        model.addAttribute("studentsPresence", formattedPresence);
+        return "studentsPresenceRaport";
     }
 
 
