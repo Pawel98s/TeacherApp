@@ -2,47 +2,116 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Aplikacja do zarządzania korkami</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
     <style>
-
-        .menu ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+        body {
+            background-color: #e0f0ff; /* jasny błękit */
         }
 
-
-        .menu li {
-            margin: 10px 0;
+        .card-hover {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
         }
 
-        .menu a {
-            text-decoration: none;
-            color: black;
-            font-size: 18px;
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
-        .menu a:hover {
-            color: blue;
+        .card-icon {
+            font-size: 3rem;
+            color: #0d6efd; /* klasyczny błękit Bootstrapa */
+            margin-bottom: 15px;
         }
 
+        .btn-custom {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+        }
 
+        .btn-custom:hover {
+            background-color: #0056b3; /* ciemniejszy błękit przy hover */
+        }
 
+        .card {
+            border: none;
+            border-radius: 12px;
+            background: #cce5ff; /* jasny błękit karty */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            color: #0d6efd;
+        }
     </style>
-
 </head>
-
 <body>
-<h1 > Aplikacja do zarządzania korkami</h1>
-<div class="menu">
-    <ul>
-        <li><a th:href="@{/student}" role="button">Zarządzanie uczniami</a></li>
-        <li><a th:href="@{/lesson}" role="button">Zarządzanie zajęciami</a></li>
-        <li><a th:href="@{/raport}" role="button">Analiza i raporty</a></li>
-<!--        <li><a th:href="@{/material}" role="button">Materiały do zajęć</a></li>-->
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0d6efd;">
+    <div class="container">
+        <a class="navbar-brand" href="#">KorkiApp</a>
+    </div>
+</nav>
+
+<div class="container text-center mt-5">
+    <h1 class="mb-5" style="color: #0d6efd;">Aplikacja do zarządzania korkami</h1>
+
+    <!-- Responsywny układ kart -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Karta 1: Uczniowie -->
+        <div class="col d-flex">
+            <div class="card card-hover shadow-sm flex-fill">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <i class="bi bi-people-fill card-icon"></i>
+                        <h5 class="card-title">Zarządzanie uczniami</h5>
+                        <p class="card-text">Dodawaj, edytuj i przeglądaj uczniów.</p>
+                    </div>
+                    <a th:href="@{/student}" class="btn btn-custom mt-3">Przejdź</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Karta 2: Zajęcia -->
+        <div class="col d-flex">
+            <div class="card card-hover shadow-sm flex-fill">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <i class="bi bi-journal-bookmark-fill card-icon"></i>
+                        <h5 class="card-title">Zarządzanie zajęciami</h5>
+                        <p class="card-text">Dodawaj, edytuj i przeglądaj zajęcia.</p>
+                    </div>
+                    <a th:href="@{/lesson}" class="btn btn-custom mt-3">Przejdź</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Karta 3: Raporty -->
+        <div class="col d-flex">
+            <div class="card card-hover shadow-sm flex-fill">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <i class="bi bi-bar-chart-fill card-icon"></i>
+                        <h5 class="card-title">Analiza i raporty</h5>
+                        <p class="card-text">Twórz raporty i analizuj frekwencję uczniów.</p>
+                    </div>
+                    <a th:href="@{/raport}" class="btn btn-custom mt-3">Przejdź</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>
 
-
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

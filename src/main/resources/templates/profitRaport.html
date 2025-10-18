@@ -1,7 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lekcje</title>
+    <title>Raport przychodów</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center; /* wyśrodkowanie treści */
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 0 auto; /* wyśrodkowanie tabeli */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center; /* wyśrodkowanie tekstu w komórkach */
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+        .no-data {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #0000EE;
+        }
+    </style>
 </head>
 <body>
 <h1>Raport przychodów</h1>
@@ -20,12 +58,14 @@
     <tr th:each="student : ${students}">
         <td th:text="${student.name}"></td>
         <td th:text="${student.surname}"></td>
-        <td class="profit"
-            th:text="${#numbers.formatDecimal(student.profit, 1, 2)} + ' zł'"></td>
+        <td th:text="${#numbers.formatDecimal(student.profit, 1, 2)} + ' zł'"></td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(students)}">
+        <td colspan="3" class="no-data">Brak danych o przychodach</td>
     </tr>
     </tbody>
 </table>
 
-<a th:href="@{/raport}" role="button">Wstecz</a>
+<a th:href="@{/raport}">Wstecz</a>
 </body>
 </html>

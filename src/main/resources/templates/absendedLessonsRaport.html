@@ -7,15 +7,17 @@
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
+            text-align: center;
         }
         table {
             border-collapse: collapse;
-            width: 80%;
+            width: 50%;
+            margin: 0 auto;
         }
         th, td {
             border: 1px solid #ddd;
             padding: 10px;
-            text-align: left;
+            text-align: center;
         }
         th {
             background-color: #f4f4f4;
@@ -26,10 +28,21 @@
         h1 {
             margin-bottom: 20px;
         }
+        .no-data {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #0000EE;
+        }
     </style>
 </head>
 <body>
-<h1>Raport: liczba odwołanych lekcji</h1>
+<h1>Liczba odwołanych lekcji</h1>
 
 <table>
     <thead>
@@ -46,10 +59,11 @@
         <td th:text="${entry.value}"></td>
     </tr>
     <tr th:if="${#lists.isEmpty(absences)}">
-        <td colspan="4" class="no-data">Brak uczniów z nieobecnościami</td>
+        <td colspan="3" class="no-data">Brak uczniów z nieobecnościami</td>
     </tr>
     </tbody>
 </table>
-<a th:href="@{/raport}" role="button">Wstecz</a>
+
+<a th:href="@{/raport}">Wstecz</a>
 </body>
 </html>
