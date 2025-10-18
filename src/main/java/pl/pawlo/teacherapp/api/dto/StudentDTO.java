@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.pawlo.teacherapp.domain.SchoolClass;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -22,4 +23,5 @@ public class StudentDTO {
     List<Integer> grades;
     String phone;
     String notes;
+    BigDecimal profit;
 }

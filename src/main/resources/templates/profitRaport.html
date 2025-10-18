@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lekcje</title>
+</head>
+<body>
+<h1>Raport przychodów</h1>
+
+<h2>Całkowity zysk: <span th:text="${profit}"></span> zł</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Zysk (zł)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.surname}"></td>
+        <td class="profit"
+            th:text="${#numbers.formatDecimal(student.profit, 1, 2)} + ' zł'"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/raport}" role="button">Wstecz</a>
+</body>
+</html>
