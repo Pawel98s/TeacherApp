@@ -24,4 +24,5 @@ public class StudentDTO {
     String phone;
     String notes;
     BigDecimal profit;
+    Integer cancelledLessonsCount;
 }

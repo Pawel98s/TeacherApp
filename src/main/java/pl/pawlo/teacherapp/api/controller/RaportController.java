@@ -66,6 +66,14 @@ public class RaportController {
         return "studentsPresenceRaport";
     }
 
+    @GetMapping("/absendedLessons")
+    public String absendedLessonsPage(Model model) {
+        List<Map.Entry<Student, Integer>> absences = raportService.findStudentsWithCountOfLessonsCancelled();
+
+        model.addAttribute("absences", absences);
+        return "absendedLessonsRaport";
+    }
+
 
 
 }

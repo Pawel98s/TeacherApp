@@ -97,6 +97,30 @@ public class RaportService {
                 ));
     }
 
+    @Transactional
+    public List<Map.Entry<Student, Integer>> findStudentsWithCountOfLessonsCancelled() {
+        List<Lesson> allLessons = lessonService.findAll();
+
+        Map<Student, List<Lesson>> lessonsByStudent = allLessons.stream()
+                .collect(Collectors.groupingBy(Lesson::getStudent));
+
+        Map<Student, Integer> absences = studentService.findAll().stream()
+                .collect(Collectors.toMap(
+                        student -> student,
+                        student -> (int) lessonsByStudent.getOrDefault(student, List.of())
+                                .stream()
+                                .filter(lesson -> lesson.getStatus() == LessonStatus.ANULOWANA
+                                        || lesson.getStatus() == LessonStatus.ODWOŁANA
+                                        || lesson.getStatus() == LessonStatus.ODWOŁANA_USPRAWIEDLIWIONA)
+                                .count()
+                ));
+
+
+        return absences.entrySet().stream()
+                .sorted(Map.Entry.<Student, Integer>comparingByValue().reversed())
+                .toList();
+    }
+
 
 
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Raport odwołanych lekcji</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Raport: liczba odwołanych lekcji</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Liczba nieobecności</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry : ${absences}">
+        <td th:text="${entry.key.name}"></td>
+        <td th:text="${entry.key.surname}"></td>
+        <td th:text="${entry.value}"></td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(absences)}">
+        <td colspan="4" class="no-data">Brak uczniów z nieobecnościami</td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/raport}" role="button">Wstecz</a>
+</body>
+</html>
