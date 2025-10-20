@@ -3,45 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <title>Edytuj lekcję</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #e0f0ff;
+            font-family: Arial, sans-serif;
+            color: black;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            color: black;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-control, .form-select, textarea {
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #0d6efd;
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #495057;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+
 <h1>Edytuj lekcję</h1>
 
-<form th:action="@{'/lesson/edit/' + ${lesson.lessonId}}" th:object="${lesson}" method="post">
+<div class="form-container">
+    <form th:action="@{'/lesson/edit/' + ${lesson.lessonId}}" th:object="${lesson}" method="post">
 
-    <input type="hidden" th:field="*{lessonId}" />
+        <input type="hidden" th:field="*{lessonId}" />
 
-    <label>Data:</label>
-    <input type="date" th:field="*{date}" /><br/>
+        <div class="mb-3">
+            <label for="date" class="form-label">Data:</label>
+            <input type="date" id="date" th:field="*{date}" class="form-control" required>
+        </div>
 
-    <label>Początek lekcji:</label>
-    <input type="time" th:field="*{startLesson}" /><br/>
+        <div class="mb-3">
+            <label for="startLesson" class="form-label">Godzina rozpoczęcia:</label>
+            <input type="time" id="startLesson" th:field="*{startLesson}" class="form-control" required>
+        </div>
 
-    <label>Koniec lekcji:</label>
-    <input type="time" th:field="*{endLesson}" /><br/>
+        <div class="mb-3">
+            <label for="endLesson" class="form-label">Godzina zakończenia:</label>
+            <input type="time" id="endLesson" th:field="*{endLesson}" class="form-control">
+        </div>
 
-    <label>Cena:</label>
-    <input type="number" step="0.01" th:field="*{price}" /><br/>
+        <div class="mb-3">
+            <label for="price" class="form-label">Cena:</label>
+            <input type="number" step="0.01" id="price" th:field="*{price}" class="form-control">
+        </div>
 
-    <label>Lokalizacja:</label>
-    <input type="text" th:field="*{location}" /><br/>
+        <div class="mb-3">
+            <label for="location" class="form-label">Miejsce:</label>
+            <input type="text" id="location" th:field="*{location}" class="form-control">
+        </div>
 
-    <label>Opis:</label>
-    <textarea th:field="*{description}"></textarea><br/>
+        <div class="mb-3">
+            <label for="description" class="form-label">Opis:</label>
+            <textarea id="description" th:field="*{description}" class="form-control" rows="3"></textarea>
+        </div>
 
-    <label>Student:</label>
-    <select th:field="*{studentId}">
-        <option th:each="s : ${students}"
-                th:value="${s.studentId}"
-                th:text="${s.name + ' ' + s.surname}">
-        </option>
-    </select><br/><br/>
+        <div class="mb-3">
+            <label for="studentId" class="form-label">Uczeń:</label>
+            <select id="studentId" th:field="*{studentId}" class="form-select" required>
+                <option th:each="s : ${students}" th:value="${s.studentId}" th:text="${s.name + ' ' + s.surname}"></option>
+            </select>
+        </div>
 
+        <button type="submit">Zapisz zmiany</button>
+    </form>
 
+    <a th:href="@{/lesson/list}" class="btn-back">Powrót do listy lekcji</a>
+</div>
 
-    <button type="submit">Zapisz zmiany</button>
-</form>
-
-<a th:href="@{/lesson/list}">Powrót do listy lekcji</a>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
