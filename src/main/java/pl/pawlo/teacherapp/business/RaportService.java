@@ -11,6 +11,7 @@ import pl.pawlo.teacherapp.domain.Student;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,12 +57,12 @@ public class RaportService {
 
 
     @Transactional
-    public List<Student> findStudentsAbandonedLessons(){
-        return studentService.findAll().stream()
-                .filter(student -> lessonService.findAll().stream()
-                        .filter(lesson -> lesson.getStatus().name().equals("ODWOŁANA"))
-                        .filter(lesson -> lesson.getStudent().equals(student))
-                        .count() > 0)
+    public List<Student> findStudentsAbandonedLessons() {
+        return lessonService.findAll().stream()
+                .filter(lesson -> lesson.getStatus() == LessonStatus.ODWOŁANA)
+                .map(Lesson::getStudent)
+                .filter(Objects::nonNull)
+                .distinct()
                 .toList();
     }
 
