@@ -1,0 +1,201 @@
+body {
+    background-color: #e0f0ff;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #0d6efd;
+}
+
+/* Kontenery formularzy i tabel */
+.form-container, .table-container {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    background: #ffffff;
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: black;
+}
+
+.form-container {
+    padding: 30px 40px;
+}
+
+.form-label, label {
+    font-weight: 500;
+    color: black;
+}
+
+.form-control, .form-select, textarea, input, select, button, a {
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 6px 12px;
+}
+
+.form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Tabele */
+table th, table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.no-data {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+}
+
+/* Przyciski */
+button, .btn-submit, .btn-custom, .btn-add, .btn-edit, .btn-delete {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+button:hover,
+.btn-submit:hover,
+.btn-custom:hover,
+.btn-add:hover,
+.btn-edit:hover,
+.btn-delete:hover {
+    background-color: #0056b3;
+}
+
+.btn-back {
+    display: block;
+    text-align: center;
+    margin: 20px auto 0 auto;
+    padding: 10px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    background-color: #6c757d;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #495057;
+    color: white;
+}
+
+/* Karty */
+.card, .card-hover {
+    border: none;
+    border-radius: 12px;
+    background: #cce5ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.card-title {
+    color: #0d6efd;
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: #0d6efd;
+    margin-bottom: 15px;
+}
+
+.btn-add {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.table-container .btn-add {
+    margin-top: 10px;
+}
+
+.table-container {
+    max-width: 1250px;
+    margin: 0 auto 50px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.table thead {
+    background-color: #cfe2ff !important;
+}
+
+.table th {
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.form-inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.form-inline label {
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.form-inline input[type="date"] {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 15px;
+}
+
+.form-inline .btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-inline .btn-primary {
+    background-color: #0d6efd;
+    border: none;
+}
+
+.form-inline .btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+.form-inline .btn-secondary {
+    background-color: #6c757d;
+}
+
+.form-inline .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
