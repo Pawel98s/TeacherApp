@@ -25,7 +25,6 @@ public class LessonService {
     StudentService studentService;
 
 
-    @Transactional
     public void save(Lesson lesson) {
         lessonDao.save(lesson);
     }
@@ -49,17 +48,17 @@ public class LessonService {
         save(lesson);
     }
 
-    @Transactional
+
     public List<Lesson> findAll(){
         return lessonDao.findAll();
     }
 
-    @Transactional
+
     public List<Lesson> findByDateOrderByStartLessonAsc(LocalDate date){
         return lessonDao.findByDateOrderByStartLessonAsc(date);
     }
 
-    @Transactional
+
     public Lesson findById(Integer id){
         return lessonDao.findById(id)
                 .orElseThrow(() -> new RuntimeException("Lesson not found"));
@@ -84,13 +83,11 @@ public class LessonService {
 
     }
 
-    @Transactional
     public void deleteById(Integer id) {
         lessonDao.deleteById(id);
     }
 
 
-    @Transactional
     public void saveAll(List<Lesson> lessons) {
         lessonDao.saveAll(lessons);
     }
@@ -144,7 +141,6 @@ public class LessonService {
     }
 
 
-    @Transactional
     public List<Lesson> findLessonsWithStatusForRealization(){
         List<Lesson> lessons = findAll();
         return lessons.stream()
@@ -152,7 +148,6 @@ public class LessonService {
                 .toList();
     }
 
-    @Transactional
     public List<Lesson> findLessonsWithStatusFinished(){
         List<Lesson> lessons = findAll();
         return lessons.stream()
@@ -160,7 +155,7 @@ public class LessonService {
                 .toList();
     }
 
-    @Transactional
+
     public List<Lesson> findLessonsWithStatusCancelled(){
         List<Lesson> lessons = findAll();
         var cancelledStatuses = List.of(

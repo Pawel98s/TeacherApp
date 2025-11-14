@@ -21,17 +21,14 @@ public class RaportService {
     StudentService studentService;
     LessonService lessonService;
 
-    @Transactional
     public long countStudents(){
         return studentService.countStudents();
     }
 
-    @Transactional
     public long countLessons(){
         return lessonService.findAll().size();
     }
 
-    @Transactional
     public Integer countProfits(){
         return lessonService.findAll().stream()
                 .filter(lesson -> lesson.getStatus().name().equals("ZAKONCZONA"))
@@ -39,7 +36,6 @@ public class RaportService {
                 .sum();
     }
 
-    @Transactional
     public Map<Student, BigDecimal> findStudentsWithIndividualProfit() {
         return studentService.findAll().stream()
                 .collect(Collectors.toMap(
@@ -56,7 +52,6 @@ public class RaportService {
     }
 
 
-    @Transactional
     public List<Student> findStudentsAbandonedLessons() {
         return lessonService.findAll().stream()
                 .filter(lesson -> lesson.getStatus() == LessonStatus.ODWOŁANA)
@@ -66,7 +61,7 @@ public class RaportService {
                 .toList();
     }
 
-    @Transactional
+
     public Map<Student, Double> findStudentsPercentageOfPresence() {
         List<Lesson> allLessons = lessonService.findAll();
 
@@ -98,7 +93,7 @@ public class RaportService {
                 ));
     }
 
-    @Transactional
+
     public List<Map.Entry<Student, Integer>> findStudentsWithCountOfLessonsCancelled() {
         List<Lesson> allLessons = lessonService.findAll();
 

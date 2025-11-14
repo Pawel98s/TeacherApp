@@ -16,36 +16,31 @@ public class StudentService {
     StudentDAO studentDAO;
 
 
-    @Transactional
+
     public void save(Student student) {
         studentDAO.save(student);
     }
 
-    @Transactional
+
     public List<Student> findAll(){
         return studentDAO.findAll();
     }
 
-    @Transactional
+
     public void delete(Student student){
         studentDAO.delete(student);
     }
 
-    @Transactional
+
     public void deleteById(Integer studentId){
         studentDAO.deleteById(studentId);
     }
 
-    @Transactional
+
     public Student findById(Integer studentId){
         return studentDAO.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
     }
-
-
-
-
-
 
 
     @Transactional
@@ -67,7 +62,7 @@ public class StudentService {
         return updated ;
     }
 
-    @Transactional
+
     public long countStudents(){
         return studentDAO.countStudents();
     }
