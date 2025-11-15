@@ -24,7 +24,6 @@ public class StudentController {
 
     @GetMapping()
     public String studentPage(Model model) {
-        model.addAttribute("student",new StudentDTO());
         return "student";
     }
 
