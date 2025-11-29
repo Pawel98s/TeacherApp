@@ -43,14 +43,14 @@ public class StudentControllerTest {
     }
 
     @Test
-    void testStudentPage() throws Exception {
+    void shouldReturnStudentPage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/student"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("student"));
     }
 
     @Test
-    void testAddStudentPage() throws Exception {
+    void shouldShowAddStudentPage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/student/add"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("addStudent"))
@@ -59,7 +59,7 @@ public class StudentControllerTest {
     }
 
     @Test
-    void testAddStudent() throws Exception {
+    void shouldAddStudent() throws Exception {
         StudentDTO studentDTO = StudentDTO.builder().build();
 
         Mockito.when(studentMapper.mapToDomain(Mockito.any(StudentDTO.class))).thenReturn(student);
@@ -72,7 +72,7 @@ public class StudentControllerTest {
     }
 
     @Test
-    void testStudentsPage() throws Exception {
+    void shouldShowStudentsPage() throws Exception {
         Mockito.when(studentService.findAll()).thenReturn(List.of(student));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/student/list"))
@@ -83,7 +83,7 @@ public class StudentControllerTest {
 
 
     @Test
-    void testDeleteStudentPage() throws Exception {
+    void shouldShowDeleteStudentPage() throws Exception {
         Mockito.when(studentService.findAll()).thenReturn(List.of(student));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/student/delete"))
@@ -93,7 +93,7 @@ public class StudentControllerTest {
     }
 
     @Test
-    void testDeleteStudent() throws Exception {
+    void shouldDeleteStudent() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/student/delete").param("studentId", "1"))
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/student/delete"));
@@ -102,7 +102,7 @@ public class StudentControllerTest {
     }
 
     @Test
-    void testEditStudentPage() throws Exception {
+    void shouldShowEditStudentPage() throws Exception {
         Mockito.when(studentService.findAll()).thenReturn(List.of(student));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/student/edit"))
@@ -113,7 +113,7 @@ public class StudentControllerTest {
     }
 
     @Test
-    void testEditStudentForm() throws Exception {
+    void shouldShowEditStudentForm() throws Exception {
         student.setStudentId(100);
 
         Mockito.when(studentService.findById(100)).thenReturn(student);
@@ -126,7 +126,7 @@ public class StudentControllerTest {
     }
 
     @Test
-    void testUpdateStudent() throws Exception {
+    void shouldUpdateStudent() throws Exception {
         student.setStudentId(5);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/student/update").flashAttr("student", student))

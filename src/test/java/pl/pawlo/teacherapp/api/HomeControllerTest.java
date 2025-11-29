@@ -17,7 +17,7 @@ public class HomeControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void testHomePage() throws Exception {
+    void shouldReturnHomePage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("home"));
