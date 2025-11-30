@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface StudentDAO {
 
-    void save(Student student);
+    Student save(Student student);
 
     List<Student> findAll();
 
